@@ -1,30 +1,197 @@
+/* Base Navbar Styles */
 .nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
-  z-index: 10;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease-in-out;
+  z-index: 1000;
+  padding-right: 30px; /* Ensures right padding */
 }
 
-.nav-menu > h1 {
-  color: blue;
+/* Dark Mode */
+.dark-mode {
+  background-color: #0d214f;
+  color: white;
 }
 
+.dark-mode .nav-menu {
+  background-color: #0d214f;
+}
+
+.dark-mode .logo,
+.dark-mode .nav-menu-desktop li a,
+.dark-mode .cv-button,
+.dark-mode .dark-mode-toggle {
+  color: white;
+  border-color: white;
+}
+
+.dark-mode .cv-button:hover {
+  background-color: white;
+  color: #0d214f;
+}
+
+.dark-mode .dark-mode-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  transition: color 0.3s ease-in-out;
+}
+
+.dark-mode .dark-mode-toggle:hover {
+  color: #1b3b6f;
+}
+
+/* Logo */
+.logo {
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: #0d214f;
+  margin-right: 20px;
+}
+
+/* Desktop Navigation */
 .nav-menu-desktop {
-  display: none;
+  list-style: none;
+  display: flex;
+  gap: 30px;
 }
 
-@media screen and (min-width: 768px) {
+.nav-menu-desktop li a {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #0d214f;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-menu-desktop li a:hover {
+  color: #1b3b6f;
+}
+
+/* Buttons Section */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto; /* Ensures the buttons move to the right side */
+}
+
+/* CV Download Button */
+.cv-button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 2px solid #0d214f;
+  background: transparent;
+  color: #0d214f;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-right: 60px; /* Prevent overflow on the right */
+}
+
+.cv-button:hover {
+  background-color: #0d214f;
+  color: white;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  /* Mobile Layout */
+  body {
+    padding-right: 10px; /* Reduce right padding for mobile */
+  }
+
+  .nav-menu {
+    padding: 15px 20px;
+  }
+
+  /* Logo */
+  .logo {
+    font-size: 28px;
+  }
+
+  /* Hamburger Icon */
   .nav-menu-icon {
+    display: block;
+    cursor: pointer;
+    font-size: 30px;
+    color: #0d214f;
+    margin-right: 10px; /* Adjust margin for proper alignment */
+  }
+
+  .dark-mode .nav-menu-icon {
+    color: white;
+  }
+
+  /* Hide Desktop Menu by Default */
+  .nav-menu-desktop {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    padding-right: 20px; /* Ensure padding right for mobile */
+  }
+
+  /* Show Menu When Open */
+  .nav-menu-desktop.open {
+    display: flex;
+  }
+
+  .dark-mode .nav-menu-desktop {
+    background: #0d214f;
+  }
+
+  /* Navigation Links for Mobile */
+  .nav-menu-desktop li {
+    margin: 10px 0;
+  }
+
+  .nav-menu-desktop li a {
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+  }
+
+  /* Show CV Button in Menu */
+  .nav-menu-desktop .cv-button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+  }
+
+  /* Hide Buttons Section in Mobile */
+  .nav-actions {
     display: none;
   }
 
-  .nav-menu-desktop {
-    display: flex;
-    list-style: none;
+  /* Ensure the burger menu stays within the screen */
+  .nav-menu-icon {
+    margin-right: 15px;
   }
 
-  .nav-menu-desktop > li {
-    padding: 0.5rem;
+  /* Ensure nav menu doesn’t overflow */
+  .nav-menu-desktop.open {
+    max-height: 100vh; /* Prevent overflow */
+    overflow-y: auto;
   }
 }
