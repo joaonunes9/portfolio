@@ -4,25 +4,19 @@ import "./index.css";
 export default function HomePage() {
   const [darkMode, setDarkMode] = useState(false);
 
-  // Function to toggle dark mode
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
   };
 
-  // Update body class based on dark mode status
   useEffect(() => {
-    // On component mount, check localStorage or set default
     const storedDarkMode = localStorage.getItem("darkMode") === "true";
     setDarkMode(storedDarkMode);
 
-    // Apply dark mode to body
     document.body.classList.toggle("dark-mode", storedDarkMode);
 
-    // Cleanup dark mode class on unmount
     return () => document.body.classList.remove("dark-mode");
   }, []);
 
-  // Persist dark mode preference in localStorage
   useEffect(() => {
     localStorage.setItem("darkMode", darkMode);
     document.body.classList.toggle("dark-mode", darkMode);
@@ -30,7 +24,6 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Dark Mode Toggle Button */}
       <button
         onClick={toggleDarkMode}
         className={`dark-mode-toggle ${darkMode ? "dark" : ""}`}
@@ -38,7 +31,6 @@ export default function HomePage() {
         {darkMode ? "Light Mode" : "Dark Mode"}
       </button>
 
-      {/* About Section */}
       <div id="about" className={`section ${darkMode ? "dark-mode" : ""}`}>
         <h2>About Me</h2>
         <div className="section-content">
@@ -56,7 +48,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Work Section */}
       <div id="work" className={`section ${darkMode ? "dark-mode" : ""}`}>
         <h2>Work Experience</h2>
         <div className="timeline">
@@ -77,7 +68,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Contact Section */}
       <div
         id="contact"
         className={`section contact ${darkMode ? "dark-mode" : ""}`}
